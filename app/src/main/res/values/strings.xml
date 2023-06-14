@@ -1,0 +1,112 @@
+<resources>
+    <string name="app_name">Dziennik Snu</string>
+
+    <!--firebase authentication-->
+    <string name="login">ZALOGUJ SIĘ</string>
+    <string name="login2">MASZ JUŻ KONTO?\nZALOGUJ SIĘ</string>
+    <string name="register">ZAREJESTRUJ SIĘ</string>
+    <string name="register2">JESTEŚ TU PIERWSZY RAZ?\nZAREJESTRUJ SIĘ</string>
+    <string name="forget">NIE PAMIĘTASZ HASŁA?</string>
+    <string name="forget2">WYŚLIJ MAIL</string>
+    <string name="email">E-mail</string>
+    <string name="pass">Hasło</string>
+    <string name="pass1">Nowe hasło</string>
+    <string name="pass2">Powtórz hasło</string>
+    <string name="pass3">ZMIEŃ HASŁO</string>
+    <string name="msg">Wpisz swój e-mail, aby dostać maila z linkiem do zresetowania hasła</string>
+    <string name="logout">Wyloguj się</string>
+
+    <!--diary reminder-->
+    <string name="setTime">WYBIERZ GODZINĘ</string>
+    <string name="setReminder">USTAW PRZYPOMNIENIE</string>
+    <string name="cancelReminder">RESETUJ PRZYPOMNIENIE</string>
+    <string name="time">00:00</string>
+    <string name="reminderInfo">Ustaw przypomnienie, aby pamiętać o wypełnieniu dziennika snu każdego dnia</string>
+
+    <string name="name">Twój dziennik snu</string>
+    <string name="add">Dodaj nowy wpis</string>
+    <string name="show">Pokaż</string>
+    <string name="delete">Usuń</string>
+
+    <string name="deleteUser">Usuń konto</string>
+    <string name="deleteConfirm">Na pewno chcesz usunąć to konto?</string>
+    <string name="deleteConfirm2">Na pewno chcesz usunąć ten wpis?</string>
+    <string name="yes">Tak</string>
+    <string name="No">Nie</string>
+
+    <string name="help">Pomoc</string>
+    <string name="help2">Jeśli masz trudności w odpowiedzeniu na pytania, kliknij w przycisk</string>
+    <string name="date">Dzisiejsza data</string>
+    <string name="date2">Dzień/miesiąc/rok</string>
+
+    <string name="q0">Dzisiejsza data</string>
+    <string name="q1">Czy to Twój wolny dzień?</string>
+    <string name="q2">O której godzinie położyłeś/aś się do łóżka?</string>
+    <string name="q3">O której godzinie faktycznie poszedłeś/poszłaś spać?</string>
+    <string name="q4">Ile minut minęło zanim zasnąłeś/aś?</string>
+    <string name="q5">O której godzinie obudziłeś/aś się tego dnia?</string>
+    <string name="q6">Czy korzystałeś/aś z pomocy budzika?</string>
+    <string name="q7">O której godzinie wstałeś/aś z łóżka?</string>
+    <string name="q8">Jakość Twojego snu minionej nocy była:</string>
+    <string name="q8a">Jakość Twojego snu minionej nocy była...</string>
+    <string-array name="q8a">
+        <item>Bardzo zła</item>
+        <item>Zła</item>
+        <item>Przeciętna</item>
+        <item>Dobra</item>
+        <item>Bardzo dobra</item>
+    </string-array>
+    <string name="q9">Komentarz (opcjonalnie)</string>
+
+    <string-array name="tn">
+        <item>Tak</item>
+        <item>Nie</item>
+    </string-array>
+
+    <string name="h0">Jest to data wypełnienia dziennika, czyli data wstania z łóżka.</string>
+    <string name="h1">Dotyczy dnia po wstaniu z łóżka, czyli określonego wpisaną datą.</string>
+    <string name="h2"> Godzina położenia się do łóżka może nie być tą samą godziną, kiedy faktycznie poszedłeś/poszłaś spać. Niektóre osoby zanim faktycznie pójdą spać, leżą w łóżku, np. czytając książkę czy oglądając telewizję. Inni natomiast kładą się do łóżka i od razu starają się zasnąć.</string>
+    <string name="h3">Godzina, kiedy faktycznie podjąłeś/aś decyzję, żeby zacząć starać się zasnąć. Dla niektórych osób jest to ta sama godzina, kiedy kładą się do łóżka</string>
+    <string name="h4">Jest to szacunkowy czas (w minutach), który uważasz, że upłynął od momentu, kiedy poszedłeś/poszłaś spać (poprzednie pytanie) do momentu zapadnięcia w sen.</string>
+    <string name="h5">Chodzi o ostateczne wybudzenie ze snu, po którym już nie spałeś/aś</string>
+    <string name="h6">Korzystanie z pomocy budzika oznacza, że wybudzenie nastąpiło jako bezpośredni efekt dźwięku budzika lub innej pomocy mającej na celu obudzenie (np. budzenie na telefon, budzenie przez współlokatora itp.). Jeśli ktoś samodzielnie obudził się przed dźwiękiem budzika, to nie skorzystał z jego pomocy (należy wpisać „nie”).</string>
+    <string name="h7">Godzina wstania z łóżka może być taka sama lub późniejsza niż godzina ostatecznego wybudzenia. Niektóre osoby po ostatecznym obudzeniu się robią jeszcze jakieś rzeczy przed wstaniem, np., czytają książkę czy sprawdzają pocztę elektroniczną</string>
+    <string name="h8"> Chodzi o Twoją subiektywną ocenę, czy sen był dobry, czy nie.</string>
+    <string name="h9"> Jeśli Twój sen był zaburzony jakimś niecodziennym wydarzeniem (np. choroba, nietypowe odgłosy z zewnątrz, głośne zachowanie sąsiadów), należy zrobić krótki komentarz opisujący, co mogło zaburzyć sen w tej konkretnej dobie.</string>
+
+    <string name="hint">Tak/Nie</string>
+    <string name="hint2">0</string>
+    <string name="help3">Jak odpowiedzieć na pytania?</string>
+    <string name="ok">Rozumiem</string>
+    <string name="ok2">OK</string>
+    <string name="error">Pola nie mogą być puste!</string>
+    <string name="com1">Dodano nowy wpis!</string>
+    <string name="com2">Wystąpił błąd</string>
+    <string name="com3">Istnieje już wpis z tą datą. Wybierz inną datę!</string>
+    <string name="com4">Usunięto wpis</string>
+    <string name="com5">Usuń wpis</string>
+    <string name="com6">Wróć do dziennika snu</string>
+    <string name="com7">Sprawdź wprowadzone godziny - czas snu nie może być dłuższy niż czas spędzony w łóżku</string>
+
+    <string name="a1">Dzień wolny</string>
+    <string name="a2">Godzina położenia się do łóżka</string>
+    <string name="a3">Godzina pójścia spać</string>
+    <string name="a4">Czas zaśnięcia w minutach</string>
+    <string name="a5">Godzina obudzenia się</string>
+    <string name="a6">Korzystanie z pomocy budzika</string>
+    <string name="a7">Godzina wstania z łóżka</string>
+    <string name="a8">Jakość snu</string>
+    <string name="a9">Komentarz</string>
+
+    <string name="s0">Statystyki z 7 dni</string>
+    <string name="s00">Wybierz datę początkową</string>
+    <string name="s000">Pokaż statystyki</string>
+
+    <string name="s1">Średnia jakość snu</string>
+    <string name="s2">Średni czas zasypiania</string>
+    <string name="s3">Średni czas snu</string>
+    <string name="s4">Średni czas spędzony w łóżku</string>
+    <string name="s5">Średnia wydajność snu</string>
+
+    <string name="wel">Witaj</string>
+</resources>

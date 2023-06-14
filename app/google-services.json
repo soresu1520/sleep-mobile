@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "754060175769",
+    "project_id": "sleep-lab-f87cc",
+    "storage_bucket": "sleep-lab-f87cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754060175769:android:27ac6adb3f55bfa1f58b08",
+        "android_client_info": {
+          "package_name": "com.example.sleepdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754060175769-uqqciubq2p8uhif38ji69tvcu1jg60b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQF_bfgYBH4LU5fLjChQZnFjFYrzmh8yA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754060175769-uqqciubq2p8uhif38ji69tvcu1jg60b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
