@@ -9,8 +9,9 @@ android {
 
     defaultConfig {
         applicationId "com.example.sleepdiary"
-        minSdk 30
-        targetSdk 32
+        minSdk 28
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
@@ -48,4 +49,5 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
     implementation 'com.github.AnyChart:AnyChart-Android:0.0.3'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.opencsv:opencsv:4.6'
 }

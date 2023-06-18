@@ -1,14 +1,11 @@
 package com.example.sleepdiary;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.sleepdiary.authentication.ChangePasswordActivity;
 import com.example.sleepdiary.authentication.LoginActivity;
@@ -16,9 +13,7 @@ import com.example.sleepdiary.diary.AddDiaryActivity;
 import com.example.sleepdiary.diary.DiaryListActivity;
 import com.example.sleepdiary.diary.StatisticsActivity;
 import com.example.sleepdiary.reminders.ReminderDiaryActivity;
-import com.example.sleepdiary.watchdata.WatchListActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.sleepdiary.smartwatch.SmartwatchActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -31,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseFirestore database;
-    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSmartClick(View view) {
-        startActivity(new Intent(MainActivity.this, WatchListActivity.class));
+        startActivity(new Intent(MainActivity.this, SmartwatchActivity.class));
     }
 
     private void getId(String email) {

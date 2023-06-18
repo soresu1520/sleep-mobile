@@ -246,19 +246,6 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button15"
-        android:layout_width="300dp"
-        android:layout_height="47dp"
-        android:onClick="onReturnClick"
-        android:text="@string/com6"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button16" />
-
-    <Button
         android:id="@+id/button16"
         android:layout_width="300dp"
         android:layout_height="47dp"
@@ -266,7 +253,7 @@
         android:onClick="onDeleteClick"
         android:text="@string/com5"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button15"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
