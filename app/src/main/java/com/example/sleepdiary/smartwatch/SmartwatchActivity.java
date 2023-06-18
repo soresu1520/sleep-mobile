@@ -104,6 +104,7 @@ public class SmartwatchActivity extends AppCompatActivity {
         readSaturationFile();
 
         WriteBatch batch = db.batch();
+        boolean newData = true;
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String email = user.getEmail();
@@ -142,7 +143,7 @@ public class SmartwatchActivity extends AppCompatActivity {
                         }
                     }
                     else {
-                        successTV.setText("Wszystkie badania są już w bazie danych");
+                        newData = false;
                         break;
                     }
                 } else {
@@ -162,17 +163,21 @@ public class SmartwatchActivity extends AppCompatActivity {
             Log.d(TAG, e.getMessage());
         }
 
-        batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                successTV.setText("Zaimportowano dane!");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                successTV.setText("Wystąpił błąd");
-            }
-        });
+        if(newData == true) {
+            batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    successTV.setText("Zaimportowano dane!");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    successTV.setText("Wystąpił błąd");
+                }
+            });
+        } else {
+            successTV.setText("Wszystkie badania są już w bazie danych");
+        }
     }
 
     private void getFiles(){
