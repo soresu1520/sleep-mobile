@@ -1,29 +1,41 @@
 package com.example.sleepdiary.smartwatch;
 
-public class SleepStage {
-    String startDate;
-    String endDate;
-    String stage;
+import com.google.firebase.Timestamp;
 
-    public SleepStage(String startDate, String endDate, String stage) {
+public class SleepStage {
+    Timestamp startDate;
+    Timestamp endDate;
+    String stage;
+    int duration;
+
+    public SleepStage(Timestamp startDate, Timestamp endDate, String stage, int duration) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.stage = stage;
+        this.duration = duration;
     }
 
-    public String getStartDate() {
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Timestamp getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
     }
 

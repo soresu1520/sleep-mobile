@@ -1,7 +1,18 @@
 package com.example.sleepdiary;
 
+import android.util.Log;
+
+import com.example.sleepdiary.smartwatch.Saturation;
+import com.google.firebase.Timestamp;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -50,6 +61,37 @@ public class Utilities {
         int differenceInMinutes = hours * 60 + min;
 
         return differenceInMinutes;
+    }
+
+    public static int getStageDuration(String startDate, String endDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        LocalDateTime sDate = LocalDateTime.parse(startDate, formatter);
+        LocalDateTime eDate = LocalDateTime.parse(endDate, formatter);
+        Duration dur = Duration.between(sDate, eDate);
+        return (int) dur.toMinutes();
+    }
+
+    public static Date parseSamsungDate(String date) throws ParseException {
+        Date parsedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(date);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(parsedDate);
+        calendar.add(Calendar.HOUR_OF_DAY, 2);
+        return calendar.getTime();
+    }
+
+    public static String parseComparisionDate(Timestamp date) throws ParseException {
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-YYYY");
+        String parsedDate = DateFormat.format(date.toDate());
+        return parsedDate;
+    }
+
+    public static Saturation findSaturationRecord(ArrayList<Saturation> list, Timestamp date) throws ParseException {
+       for(Saturation item : list){
+           if(parseComparisionDate(item.getEntryDate()).equals(parseComparisionDate(date))){
+               return item;
+           }
+       }
+       return new Saturation(0,0,0,0,new Timestamp(new Date()));
     }
 
 
