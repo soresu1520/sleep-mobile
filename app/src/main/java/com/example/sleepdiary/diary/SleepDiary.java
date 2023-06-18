@@ -6,17 +6,17 @@ import java.sql.Time;
 
 public class SleepDiary {
 
-    private String id, patientId, patientEmail, dateEntry, q1, q2, q3, q4, q5, q6, q7, q8, q9;
+    private String id, patientId, patientEmail, entryDate, q1, q2, q3, q4, q5, q6, q7, q8, q9;
     private Timestamp timestamp;
 
     public SleepDiary() {
     }
 
-    public SleepDiary(String id, String patientId, String patientEmail, String dateEntry, String q1, String q2, String q3, String q4, String q5, String q6, String q7, String q8, String q9, Timestamp timeStamp) {
+    public SleepDiary(String id, String patientId, String patientEmail, String entryDate, String q1, String q2, String q3, String q4, String q5, String q6, String q7, String q8, String q9, Timestamp timestamp) {
         this.id = id;
         this.patientId = patientId;
         this.patientEmail = patientEmail;
-        this.dateEntry = dateEntry;
+        this.entryDate = entryDate;
         this.q1 = q1;
         this.q2 = q2;
         this.q3 = q3;
@@ -26,15 +26,7 @@ public class SleepDiary {
         this.q7 = q7;
         this.q8 = q8;
         this.q9 = q9;
-        this.timestamp = timeStamp;
-    }
-
-    public String getPatientEmail() {
-        return patientEmail;
-    }
-
-    public void setPatientEmail(String patientEmail) {
-        this.patientEmail = patientEmail;
+        this.timestamp = timestamp;
     }
 
     public String getId() {
@@ -49,16 +41,24 @@ public class SleepDiary {
         return patientId;
     }
 
-    public void setPatientId(String patientEmail) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
-    public String getDateEntry() {
-        return dateEntry;
+    public String getPatientEmail() {
+        return patientEmail;
     }
 
-    public void setDateEntry(String dateEntry) {
-        this.dateEntry = dateEntry;
+    public void setPatientEmail(String patientEmail) {
+        this.patientEmail = patientEmail;
+    }
+
+    public String getEntryDate() {
+        return entryDate;
+    }
+
+    public void setEntryDate(String entryDate) {
+        this.entryDate = entryDate;
     }
 
     public String getQ1() {

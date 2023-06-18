@@ -137,7 +137,7 @@ public class StatisticsActivity extends AppCompatActivity {
         ArrayList<SleepDiary> sleepsFound = new ArrayList<>();
 
         while(find==false && i<sleeps.size()){
-            if (sleeps.get(i).getDateEntry().equals(q.getText())){
+            if (sleeps.get(i).getEntryDate().equals(q.getText())){
                 find = true;
                 findIndex=i;
             }
@@ -165,7 +165,7 @@ public class StatisticsActivity extends AppCompatActivity {
         }
 
         for(int j = 0; j < sleepsFound.size();  j++){
-            Log.d("sleeps3", sleeps.get(j).getDateEntry());
+            Log.d("sleeps3", sleeps.get(j).getEntryDate());
         }
 
         Log.d("sleeps3", String.valueOf(find2));

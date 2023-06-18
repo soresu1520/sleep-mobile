@@ -19,41 +19,60 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65999997"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/textView78"
         android:layout_width="331dp"
         android:layout_height="57dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Pobierz dane z Samsung Health, a następnie zaimportuj dane"
         android:textColor="@color/hint"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/textView99"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView77" />
 
     <TextView
-        android:id="@+id/lastImportTV"
-        android:layout_width="331dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="25dp"
+        android:id="@+id/textView99"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="W bazie znajdują się dane do:"
+        android:text="Poniżej znajduje się instrukcja. Przesuwaj w prawo, aby zobaczyć kolejne kroki"
         android:textColor="@color/hint"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/successTV"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/viewPagerMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView78" />
+
+    <TextView
+        android:id="@+id/lastImportTV"
+        android:layout_width="331dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="W bazie znajdują się dane do"
+        android:textColor="@color/hint"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/successTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerMain" />
 
     <TextView
         android:id="@+id/successTV"
         android:layout_width="331dp"
         android:layout_height="57dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:textColor="@color/darkblue"
         android:textSize="20sp"
@@ -68,6 +87,7 @@
         android:id="@+id/button9"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:onClick="onOpenClick"
         android:text="Otwórz Samsung Health"
         app:layout_constraintBottom_toTopOf="@+id/button11"
@@ -80,7 +100,6 @@
         android:id="@+id/button11"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:onClick="onImportClick"
         android:text="Zaimportuj dane"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -89,16 +108,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button9" />
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerMain"
         android:layout_width="333dp"
         android:layout_height="271dp"
-        android:layout_marginTop="30dp"
-        android:scaleType="fitXY"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/lastImportTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView78"
-        app:srcCompat="@drawable/instruc" />
+        app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

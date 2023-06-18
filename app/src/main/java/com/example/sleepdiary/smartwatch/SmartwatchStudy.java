@@ -27,6 +27,9 @@ public class SmartwatchStudy {
         this.entryDate = entryDate;
     }
 
+    public SmartwatchStudy() {
+    }
+
     public String getId() {
         return id;
     }

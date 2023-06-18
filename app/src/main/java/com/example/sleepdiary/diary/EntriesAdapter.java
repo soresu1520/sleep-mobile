@@ -28,7 +28,7 @@ public class EntriesAdapter
 
     @Override
     protected void onBindViewHolder(@NonNull EntriesHolder holder, int position, @NonNull SleepDiary model) {
-        holder.dateAd.setText(model.getDateEntry());
+        holder.dateAd.setText(model.getEntryDate());
 
         holder.showButton1.setOnClickListener(new View.OnClickListener() {
             @Override

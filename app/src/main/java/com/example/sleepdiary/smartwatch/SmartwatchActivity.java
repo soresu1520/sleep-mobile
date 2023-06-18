@@ -3,6 +3,7 @@ package com.example.sleepdiary.smartwatch;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.content.Context;
@@ -32,8 +33,13 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -50,6 +56,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -65,6 +72,9 @@ public class SmartwatchActivity extends AppCompatActivity {
     Timestamp compareTimestamp;
     Timestamp lastEntry;
     private FirebaseFirestore db;
+    ViewPager mViewPager;
+    int[] images = {R.drawable.instruc, R.drawable.instruc2, R.drawable.instruc3};
+    ViewPagerAdapter mViewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,23 +82,19 @@ public class SmartwatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_smartwatch);
         lastImportTV = (TextView) findViewById(R.id.lastImportTV);
         successTV = (TextView) findViewById(R.id.successTV);
+        mViewPager = (ViewPager)findViewById(R.id.viewPagerMain);
+        mViewPagerAdapter = new ViewPagerAdapter(SmartwatchActivity.this, images);
+        mViewPager.setAdapter(mViewPagerAdapter);
 
         PatientIdSingleton patientIdSingleton = com.example.sleepdiary.PatientIdSingleton.getInstance();
         patId = patientIdSingleton.getId();
         db = FirebaseFirestore.getInstance();
+        getLastEntry();
 
 //        this will be commented out
         Calendar myCalendar = new GregorianCalendar(2023, 3, 28);
         Date myDate = myCalendar.getTime();
         compareTimestamp = new Timestamp(myDate);
-        lastEntry = new Timestamp(myDate);
-        try {
-            lastImportTV.setText("W bazie znajdują się dane do "
-                    + Utilities.parseComparisionDate(lastEntry));
-        } catch (ParseException e) {
-            lastImportTV.setText("W bazie znajdują się dane do:");
-            e.printStackTrace();
-        }
     }
 
     public void onImportClick(View view) {
@@ -134,6 +140,10 @@ public class SmartwatchActivity extends AppCompatActivity {
                             studySaturation = new Saturation(0, 0, 0, 0, new Timestamp(new Date()));
                             studyStages.clear();
                         }
+                    }
+                    else {
+                        successTV.setText("Wszystkie badania są już w bazie danych");
+                        break;
                     }
                 } else {
                     studyStages.add(stagesList.get(i));
@@ -241,5 +251,34 @@ public class SmartwatchActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Aplikacja Samsung Health nie jest zainstalowana na tym telefonie", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void getLastEntry(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        db.collection("smartwatch")
+                .whereEqualTo("patientEmail", email)
+                .orderBy("entryDate", Query.Direction.DESCENDING).limit(1)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            SmartwatchStudy study = task.getResult().getDocuments().get(0).toObject(SmartwatchStudy.class);
+                            lastEntry = study.entryDate;
+                            try {
+                                lastImportTV.setText("W bazie znajdują się dane do "
+                                        + Utilities.parseComparisionDate(lastEntry));
+                            } catch (ParseException e) {
+                                lastImportTV.setText("W bazie znajdują się dane do");
+                                e.printStackTrace();
+                            }
+                            ArrayList<SleepStage> studyStages = study.getSleepStages();
+                            compareTimestamp = studyStages.get(studyStages.size()-1).endDate;
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 }

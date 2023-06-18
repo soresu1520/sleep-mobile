@@ -15,6 +15,9 @@ public class SleepStage {
         this.duration = duration;
     }
 
+    public SleepStage() {
+    }
+
     public int getDuration() {
         return duration;
     }
