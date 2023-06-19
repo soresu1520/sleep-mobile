@@ -167,6 +167,7 @@ public class SmartwatchActivity extends AppCompatActivity {
             batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
+                    lastImportTV.setText("");
                     successTV.setText("Zaimportowano dane!");
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -269,17 +270,24 @@ public class SmartwatchActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            boolean emptyDocument = task.getResult().isEmpty();
+                            if(!emptyDocument) {
                             SmartwatchStudy study = task.getResult().getDocuments().get(0).toObject(SmartwatchStudy.class);
-                            lastEntry = study.entryDate;
-                            try {
-                                lastImportTV.setText("W bazie znajdują się dane do "
-                                        + Utilities.parseComparisionDate(lastEntry));
-                            } catch (ParseException e) {
-                                lastImportTV.setText("W bazie znajdują się dane do");
-                                e.printStackTrace();
+                                lastEntry = study.entryDate;
+                                try {
+                                    lastImportTV.setText("W bazie znajdują się dane do "
+                                            + Utilities.parseComparisionDate(lastEntry));
+                                } catch (ParseException e) {
+                                    lastImportTV.setText("Wystąpił błąd");
+                                    Log.d(TAG, e.getMessage());
+                                }
+
+                                ArrayList<SleepStage> studyStages = study.getSleepStages();
+                                compareTimestamp = studyStages.get(studyStages.size() - 1).endDate;
+                            } else {
+                                lastImportTV.setText("W bazie nie ma jeszcze danych");
+                                compareTimestamp = new Timestamp(0, 0);
                             }
-                            ArrayList<SleepStage> studyStages = study.getSleepStages();
-                            compareTimestamp = studyStages.get(studyStages.size()-1).endDate;
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }

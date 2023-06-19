@@ -9,20 +9,20 @@ public class SmartwatchStudy {
     String patientId;
     String patientEmail;
     ArrayList<SleepStage> sleepStages;
-    float max;
-    float min;
-    float mean;
+    float maxSaturation;
+    float minSaturation;
+    float meanSaturation;
     float desaturationTime;
     Timestamp entryDate;
 
-    public SmartwatchStudy(String id, String patientId, String patientEmail, ArrayList<SleepStage> sleepStages, float max, float min, float mean, float desaturationTime, Timestamp entryDate) {
+    public SmartwatchStudy(String id, String patientId, String patientEmail, ArrayList<SleepStage> sleepStages, float maxSaturation, float minSaturation, float meanSaturation, float desaturationTime, Timestamp entryDate) {
         this.id = id;
         this.patientId = patientId;
         this.patientEmail = patientEmail;
         this.sleepStages = sleepStages;
-        this.max = max;
-        this.min = min;
-        this.mean = mean;
+        this.maxSaturation = maxSaturation;
+        this.minSaturation = minSaturation;
+        this.meanSaturation = meanSaturation;
         this.desaturationTime = desaturationTime;
         this.entryDate = entryDate;
     }
@@ -62,28 +62,28 @@ public class SmartwatchStudy {
         this.sleepStages = sleepStages;
     }
 
-    public float getMax() {
-        return max;
+    public float getMaxSaturation() {
+        return maxSaturation;
     }
 
-    public void setMax(float max) {
-        this.max = max;
+    public void setMaxSaturation(float maxSaturation) {
+        this.maxSaturation = maxSaturation;
     }
 
-    public float getMin() {
-        return min;
+    public float getMinSaturation() {
+        return minSaturation;
     }
 
-    public void setMin(float min) {
-        this.min = min;
+    public void setMinSaturation(float minSaturation) {
+        this.minSaturation = minSaturation;
     }
 
-    public float getMean() {
-        return mean;
+    public float getMeanSaturation() {
+        return meanSaturation;
     }
 
-    public void setMean(float mean) {
-        this.mean = mean;
+    public void setMeanSaturation(float meanSaturation) {
+        this.meanSaturation = meanSaturation;
     }
 
     public float getDesaturationTime() {
