@@ -62,7 +62,7 @@ public class DiaryEntryActivity extends AppCompatActivity {
                         if (e !=null) {
                         }
                         DocumentChange documentChange = documentSnapshots.getDocumentChanges().get(0);
-                        String dateQ =  documentChange.getDocument().getData().get("dateEntry").toString();
+                        String dateQ =  documentChange.getDocument().getData().get("entryDate").toString();
                         String a1 =  documentChange.getDocument().getData().get("q1").toString();
                         String a2 =  documentChange.getDocument().getData().get("q2").toString();
                         String a3 =  documentChange.getDocument().getData().get("q3").toString();
