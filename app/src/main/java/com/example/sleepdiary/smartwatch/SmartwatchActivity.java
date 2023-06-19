@@ -91,7 +91,6 @@ public class SmartwatchActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         getLastEntry();
 
-//        this will be commented out
         Calendar myCalendar = new GregorianCalendar(2023, 3, 28);
         Date myDate = myCalendar.getTime();
         compareTimestamp = new Timestamp(myDate);
@@ -107,7 +106,6 @@ public class SmartwatchActivity extends AppCompatActivity {
         boolean newData = true;
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email = user.getEmail();
 
         ArrayList<SleepStage> studyStages = new ArrayList<SleepStage>();
         Saturation studySaturation = new Saturation(0, 0, 0, 0, new Timestamp(new Date()));
@@ -123,7 +121,7 @@ public class SmartwatchActivity extends AppCompatActivity {
                             }
                             studyStages.add(stagesList.get(i));
                         } else {
-                            String id = UUID.randomUUID().toString();
+                            String id = Utilities.generateUUID();
                             String entryDateString = Utilities.parseComparisionDate(studyStages.get(studyStages.size()-1).endDate);
                             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                             Date entryDate = formatter.parse(entryDateString);
@@ -131,7 +129,7 @@ public class SmartwatchActivity extends AppCompatActivity {
                             Log.d(TAG, entryDate.toString());
 
                             SmartwatchStudy smartwatchStudy = new SmartwatchStudy(id, patId,
-                                    email, studyStages, studySaturation.max, studySaturation.min,
+                                    studyStages, studySaturation.max, studySaturation.min,
                                     studySaturation.mean, studySaturation.desaturationTime,
                                     new Timestamp(entryDate));
 
@@ -149,9 +147,9 @@ public class SmartwatchActivity extends AppCompatActivity {
                 } else {
                     studyStages.add(stagesList.get(i));
 
-                    String id = UUID.randomUUID().toString();
+                    String id = Utilities.generateUUID();
                     SmartwatchStudy smartwatchStudy = new SmartwatchStudy(id, patId,
-                            email, studyStages, studySaturation.max, studySaturation.min,
+                            studyStages, studySaturation.max, studySaturation.min,
                             studySaturation.mean, studySaturation.desaturationTime, studyStages.get(studyStages.size()-1).endDate);
 
                     DocumentReference nycRef = db.collection("smartwatch").document(id);
@@ -261,9 +259,8 @@ public class SmartwatchActivity extends AppCompatActivity {
 
     private void getLastEntry(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email = user.getEmail();
         db.collection("smartwatch")
-                .whereEqualTo("patientEmail", email)
+                .whereEqualTo("patientId", patId)
                 .orderBy("entryDate", Query.Direction.DESCENDING).limit(1)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

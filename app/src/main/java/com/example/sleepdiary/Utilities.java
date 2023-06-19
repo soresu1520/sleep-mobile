@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.sleepdiary.smartwatch.Saturation;
 import com.google.firebase.Timestamp;
 
+import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -13,8 +14,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class Utilities {
 
@@ -94,5 +97,14 @@ public class Utilities {
        return new Saturation(0,0,0,0,new Timestamp(new Date()));
     }
 
+    public static String generateUUID(){
+        UUID uuid = UUID.randomUUID();
+        ByteBuffer byteBuffer = ByteBuffer.wrap(new byte[16])
+                .putLong(uuid.getMostSignificantBits())
+                .putLong(uuid.getLeastSignificantBits());
+
+        String encodedUUID = Base64.getUrlEncoder().withoutPadding().encodeToString(byteBuffer.array());
+        return encodedUUID;
+    }
 
 }

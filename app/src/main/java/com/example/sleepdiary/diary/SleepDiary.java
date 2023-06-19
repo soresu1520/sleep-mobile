@@ -6,16 +6,15 @@ import java.sql.Time;
 
 public class SleepDiary {
 
-    private String id, patientId, patientEmail, entryDate, q1, q2, q3, q4, q5, q6, q7, q8, q9;
+    private String id, patientId, entryDate, q1, q2, q3, q4, q5, q6, q7, q8, q9;
     private Timestamp timestamp;
 
     public SleepDiary() {
     }
 
-    public SleepDiary(String id, String patientId, String patientEmail, String entryDate, String q1, String q2, String q3, String q4, String q5, String q6, String q7, String q8, String q9, Timestamp timestamp) {
+    public SleepDiary(String id, String patientId, String entryDate, String q1, String q2, String q3, String q4, String q5, String q6, String q7, String q8, String q9, Timestamp timestamp) {
         this.id = id;
         this.patientId = patientId;
-        this.patientEmail = patientEmail;
         this.entryDate = entryDate;
         this.q1 = q1;
         this.q2 = q2;
@@ -43,14 +42,6 @@ public class SleepDiary {
 
     public void setPatientId(String patientId) {
         this.patientId = patientId;
-    }
-
-    public String getPatientEmail() {
-        return patientEmail;
-    }
-
-    public void setPatientEmail(String patientEmail) {
-        this.patientEmail = patientEmail;
     }
 
     public String getEntryDate() {

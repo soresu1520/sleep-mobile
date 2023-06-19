@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class SmartwatchStudy {
     String id;
     String patientId;
-    String patientEmail;
     ArrayList<SleepStage> sleepStages;
     float maxSaturation;
     float minSaturation;
@@ -15,10 +14,9 @@ public class SmartwatchStudy {
     float desaturationTime;
     Timestamp entryDate;
 
-    public SmartwatchStudy(String id, String patientId, String patientEmail, ArrayList<SleepStage> sleepStages, float maxSaturation, float minSaturation, float meanSaturation, float desaturationTime, Timestamp entryDate) {
+    public SmartwatchStudy(String id, String patientId, ArrayList<SleepStage> sleepStages, float maxSaturation, float minSaturation, float meanSaturation, float desaturationTime, Timestamp entryDate) {
         this.id = id;
         this.patientId = patientId;
-        this.patientEmail = patientEmail;
         this.sleepStages = sleepStages;
         this.maxSaturation = maxSaturation;
         this.minSaturation = minSaturation;
@@ -44,14 +42,6 @@ public class SmartwatchStudy {
 
     public void setPatientId(String patientId) {
         this.patientId = patientId;
-    }
-
-    public String getPatientEmail() {
-        return patientEmail;
-    }
-
-    public void setPatientEmail(String patientEmail) {
-        this.patientEmail = patientEmail;
     }
 
     public ArrayList<SleepStage> getSleepStages() {

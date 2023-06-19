@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.sleepdiary.PatientIdSingleton;
 import com.example.sleepdiary.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,8 +22,7 @@ public class DiaryListActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private CollectionReference collectRef;
     private RecyclerView recyclerView;
-    private FirebaseUser user;
-    private String email, patId;
+    private String patId;
 
     private EntriesAdapter adapter;
 
@@ -32,8 +32,8 @@ public class DiaryListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diary_list);
         db = FirebaseFirestore.getInstance();
         collectRef = db.collection("sleepdiary");
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        email = user.getEmail();
+        PatientIdSingleton patientIdSingleton = com.example.sleepdiary.PatientIdSingleton.getInstance();
+        patId = patientIdSingleton.getId();
         recyclerView = findViewById(R.id.diaryRv);
         setUpRecyclerView();
         recyclerView.setItemAnimator(null);
@@ -46,7 +46,7 @@ public class DiaryListActivity extends AppCompatActivity {
 
     private void setUpRecyclerView(){
 
-        Query query = collectRef.whereEqualTo("patientEmail", email).
+        Query query = collectRef.whereEqualTo("patientId", patId).
                 orderBy("timestamp", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<SleepDiary> options = new FirestoreRecyclerOptions.Builder<SleepDiary>()

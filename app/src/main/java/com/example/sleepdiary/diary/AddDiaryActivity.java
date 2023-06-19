@@ -32,10 +32,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -93,7 +96,7 @@ public class AddDiaryActivity extends AppCompatActivity {
         q8 = String.valueOf(que8.getSelectedItem());
         q9 = que9.getText().toString();
 
-        idDiary = UUID.randomUUID().toString();
+        idDiary = Utilities.generateUUID();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         email = user.getEmail();
@@ -133,7 +136,7 @@ public class AddDiaryActivity extends AppCompatActivity {
                                 createExistsPopup();
                             }
                             else {
-                                addDataToFirestore(idDiary, email, patId, qDate, q1, q2, q3, q4, q5, q6, q7, q8, q9, ts);
+                                addDataToFirestore(idDiary, patId, qDate, q1, q2, q3, q4, q5, q6, q7, q8, q9, ts);
                             }
                             Log.d("QueryResult2", String.valueOf(documentExists));
                             Log.d("QueryResult3", Calendar.getInstance().getTime().toString());
@@ -143,14 +146,14 @@ public class AddDiaryActivity extends AppCompatActivity {
         }
     }
 
-    private void addDataToFirestore(String id, String patientEmail, String patId, String dateEntry, String q1,
+    private void addDataToFirestore(String id, String patId, String dateEntry, String q1,
                                     String q2, String q3, String q4, String q5, String q6,
                                     String q7, String q8, String q9, Timestamp timestamp) {
 
         db = FirebaseFirestore.getInstance();
         CollectionReference dbCourses = db.collection("sleepdiary");
 
-        SleepDiary sleepDiary = new SleepDiary(id, patId, patientEmail, dateEntry, q1, q2, q3, q4, q5, q6,
+        SleepDiary sleepDiary = new SleepDiary(id, patId, dateEntry, q1, q2, q3, q4, q5, q6,
                 q7, q8, q9, ts);
 
         db.collection("sleepdiary").document(id).set(sleepDiary).addOnSuccessListener(new OnSuccessListener<Void>() {
