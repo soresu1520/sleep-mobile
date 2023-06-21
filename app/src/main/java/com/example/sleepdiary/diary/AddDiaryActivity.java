@@ -104,46 +104,51 @@ public class AddDiaryActivity extends AppCompatActivity {
         Date date = new SimpleDateFormat("dd.MM.yyyy").parse(qDate);
         ts = new Timestamp(date);
 
-        int sleepMinutes = Utilities.getSleepTimeInMinutes(q3, q5, q4);
-        int bedMinutes = Utilities.getBedTimeInMinutes(q2, q7);
-        Log.d("add123", String.valueOf(sleepMinutes));
-        Log.d("add123", String.valueOf(bedMinutes));
+
+//        int sleepMinutes = Utilities.getSleepTimeInMinutes(q3, q5, q4);
+//        int bedMinutes = Utilities.getBedTimeInMinutes(q2, q7);
+//        Log.d("add123", String.valueOf(sleepMinutes));
+//        Log.d("add123", String.valueOf(bedMinutes));
 
         if ( que4.getText().toString().isEmpty()==true){
             createNewPopup2();
         }
-        else if (sleepMinutes > bedMinutes){
-            createTimePopup();
+
+        if(que4.getText().toString().isEmpty()==false) {
+            int sleepMinutes = Utilities.getSleepTimeInMinutes(q3, q5, q4);
+            int bedMinutes = Utilities.getBedTimeInMinutes(q2, q7);
+            if (sleepMinutes > bedMinutes) {
+                createTimePopup();
+            } else {
+                FirebaseFirestore.getInstance().collection("sleepdiary").
+                        whereEqualTo("patientId", patId).
+                        whereEqualTo("entryDate", qDate).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            boolean documentExists = false;
+
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("QueryResult", "Is query result empty: " + task.getResult().isEmpty());
+                                    documentExists = !task.getResult().isEmpty();
+
+                                } else {
+                                    Log.e("QueryResult", "Error getting documents.", task.getException());
+                                    documentExists = true;
+                                }
+
+                                if (documentExists) {
+                                    createExistsPopup();
+                                } else {
+                                    addDataToFirestore(idDiary, patId, qDate, q1, q2, q3, q4, q5, q6, q7, q8, q9, ts);
+                                }
+                                Log.d("QueryResult2", String.valueOf(documentExists));
+                                Log.d("QueryResult3", Calendar.getInstance().getTime().toString());
+                                Log.d("QueryResult4", String.valueOf(Calendar.getInstance().getTimeInMillis()));
+                            }
+                        });
+            }
         }
-        else{
-            FirebaseFirestore.getInstance().collection("sleepdiary").
-                    whereEqualTo("patientEmail", email).
-                    whereEqualTo("dateEntry", qDate).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        boolean documentExists = false;
 
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                Log.d("QueryResult", "Is query result empty: " + task.getResult().isEmpty());
-                                documentExists = !task.getResult().isEmpty();
-
-                            }else {
-                                Log.e("QueryResult", "Error getting documents.", task.getException());
-                                documentExists = true;
-                            }
-
-                            if(documentExists){
-                                createExistsPopup();
-                            }
-                            else {
-                                addDataToFirestore(idDiary, patId, qDate, q1, q2, q3, q4, q5, q6, q7, q8, q9, ts);
-                            }
-                            Log.d("QueryResult2", String.valueOf(documentExists));
-                            Log.d("QueryResult3", Calendar.getInstance().getTime().toString());
-                            Log.d("QueryResult4", String.valueOf(Calendar.getInstance().getTimeInMillis()));
-                        }
-                    });
-        }
     }
 
     private void addDataToFirestore(String id, String patId, String dateEntry, String q1,

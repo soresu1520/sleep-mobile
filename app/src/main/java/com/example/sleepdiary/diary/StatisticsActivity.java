@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.example.sleepdiary.PatientIdSingleton;
 import com.example.sleepdiary.R;
 import com.example.sleepdiary.Utilities;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,12 +35,16 @@ public class StatisticsActivity extends AppCompatActivity {
 
     private int mYear, mMonth, mDay;
     private TextView q, a1tv, a6tv, a2tv, a3tv, a4tv, a5tv;
-    private ArrayList<SleepDiary> sleeps = new ArrayList<>();;
+    private ArrayList<SleepDiary> sleeps = new ArrayList<>();
+    private String patId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        PatientIdSingleton patientIdSingleton = com.example.sleepdiary.PatientIdSingleton.getInstance();
+        patId = patientIdSingleton.getId();
 
         Log.d("sleeps4", String.valueOf(sleeps.size()));
 
@@ -66,7 +71,7 @@ public class StatisticsActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String  email = user.getEmail();
 
-        db.collection("sleepdiary").whereEqualTo("patientEmail", email).get()
+        db.collection("sleepdiary").whereEqualTo("patientId", patId).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {
