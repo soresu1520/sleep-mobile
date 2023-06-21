@@ -8,7 +8,7 @@
         <item name="postSplashScreenTheme">@style/Theme.SleepDiary</item>
 
         <!-- Status bar and Nav bar configs -->
-        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:statusBarColor">@color/darkblue</item>
         <item name="android:navigationBarColor">@color/background</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
